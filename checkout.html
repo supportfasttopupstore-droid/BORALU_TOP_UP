@@ -40,6 +40,7 @@ h1{color:#0066ff;text-align:center;margin-bottom:15px;font-size:26px;font-weight
 .payment-card{background:linear-gradient(135deg, #0066ff, #0044cc);color:#fff;border-radius:15px;padding:15px;margin-bottom:12px;}
 .payment-card h3{font-size:15px;margin-bottom:8px;}
 .payment-card .detail{font-size:13px;margin-bottom:4px;display:flex;justify-content:space-between;}
+.white-number{color:#ffffff !important;font-weight:800 !important;font-size:14px;}
 
 /* BUTTON */
 .pay-btn{width:100%;padding:16px;background:linear-gradient(90deg, #0066ff, #0044cc);border:none;border-radius:15px;color:#fff;font-weight:800;font-size:16px;cursor:pointer;margin-top:20px;box-shadow:0 4px 15px rgba(0,102,255,0.3);transition:0.3s;}
@@ -64,12 +65,10 @@ h1{color:#0066ff;text-align:center;margin-bottom:15px;font-size:26px;font-weight
 <div class="container">
 <h1>Complete Your Order</h1>
 
-<!-- === EKA PHOTO FILE === -->
 <div class="banner-container">
   <img src="ca6dbc14-8161-4cea-9774-f3a9ecf16ff3.jpeg" alt="BORALU STORE Banner">
 </div>
 
-<!-- 1. PLAYER INFO - LOCKED -->
 <div class="box">
 <h2>👤 Player Details</h2>
 <div class="locked">
@@ -78,14 +77,12 @@ h1{color:#0066ff;text-align:center;margin-bottom:15px;font-size:26px;font-weight
 </div>
 </div>
 
-<!-- 2. ORDER SUMMARY -->
 <div class="box">
 <h2>🛒 Order Summary</h2>
 <div id="cartItems"></div>
 <div class="row total-row"><span>Total Amount:</span> <span id="cTotal">Rs. 0</span></div>
 </div>
 
-<!-- 3. CONTACT & PAYMENT -->
 <div class="box">
 <h2>📞 Contact & Payment</h2>
 <div class="form-group">
@@ -106,7 +103,7 @@ h1{color:#0066ff;text-align:center;margin-bottom:15px;font-size:26px;font-weight
   
 <div class="payment-card">
 <h3>📲 EZ CASH</h3>
-<div class="detail"><span>Number:</span> <span>0762142964</span></div>
+<div class="detail"><span>Number:</span> <span class="white-number">0762142964</span></div>
 </div>
 
 <div class="warning">⚠️ අනිවාර්යයෙන් වැඩියෙන් Rs.20 දමන්න! <br>📸 මුදල් දැම්මාට පස්සේ Risit Photo එක අනිවාර්යයෙන් Upload කරන්න!</div>
@@ -127,7 +124,6 @@ h1{color:#0066ff;text-align:center;margin-bottom:15px;font-size:26px;font-weight
 
 </div>
 
-<!-- SUCCESS POPUP -->
 <div class="success-popup" id="successPopup">
 <div class="success-box">
 <div class="success-icon">✓</div>
@@ -148,7 +144,6 @@ let uploadedFile = null;
 document.getElementById('cName').innerText = name;
 document.getElementById('cUID').innerText = uid;
 
-// CART LOAD
 let html = '';
 let total = 0;
 cart.forEach(item => {
@@ -156,9 +151,8 @@ html += `<div class="row"><span>${item.name} x ${item.qty}</span> <span>Rs. ${it
 total += item.total;
 });
 document.getElementById('cartItems').innerHTML = html;
-document.getElementById('cTotal').innerText = 'Rs. ' + (total + 20); // Rs.20 wadi
+document.getElementById('cTotal').innerText = 'Rs. ' + (total + 20);
 
-// PHOTO UPLOAD PREVIEW
 document.getElementById('receiptUpload').addEventListener('change', function(e){
 uploadedFile = e.target.files[0];
 if(uploadedFile){
@@ -184,7 +178,6 @@ document.getElementById('placeOrderBtn').disabled = true;
 }
 }
 
-// TELEGRAM BOT EKATA YAWANNA
 async function placeOrder(){
 let number = document.getElementById('userNumber').value;
 let orderText = `🆕 *NEW ORDER - BORALU STORE* 🆕\n\n`;
@@ -198,9 +191,8 @@ orderText += `- ${item.name} x ${item.qty} = Rs.${item.total}\n`;
 orderText += `\n💰 *Total:* Rs.${total + 20}\n`;
 orderText += `⏰ *Time:* ${new Date().toLocaleString('en-LK')}`;
 
-// BOT TOKEN EKA DANNA ME THANATA
 const BOT_TOKEN = "8663191456:AAGH2JWIdKmWYGEZzNS3auSX7EXEze_N51g"; 
-const CHAT_ID = "8721681884"; // Oyage telegram chat id
+const CHAT_ID = "8721681884";
 
 const formData = new FormData();
 formData.append('chat_id', CHAT_ID);
@@ -236,7 +228,7 @@ document.getElementById('successPopup').classList.add('active');
 setTimeout(() => {
 localStorage.clear();
 window.location.href = 'topup.html';
-}, 3000); // 3 sec passe home yanawa
+}, 3000);
 }
 </script>
 </body>
