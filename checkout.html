@@ -180,10 +180,15 @@ document.getElementById('placeOrderBtn').disabled = true;
 
 async function placeOrder(){
 let number = document.getElementById('userNumber').value;
+
+// --- WHATSAPP LINK LOGIC ---
+let waNumber = number.startsWith('0') ? '94' + number.substring(1) : number;
+let waLink = `https://wa.me/${waNumber}`;
+
 let orderText = `🆕 *NEW ORDER - BORALU STORE* 🆕\n\n`;
 orderText += `👤 *Name:* ${name}\n`;
 orderText += `🆔 *UID:* ${uid}\n`;
-orderText += `📞 *WhatsApp:* ${number}\n\n`;
+orderText += `📞 *WhatsApp:* [${number}](${waLink})\n\n`;
 orderText += `📦 *ORDER DETAILS:*\n`;
 cart.forEach(item => {
 orderText += `- ${item.name} x ${item.qty} = Rs.${item.total}\n`;
